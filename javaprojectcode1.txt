@@ -1,0 +1,105 @@
+
+import java.util.Scanner;
+
+public class FoodOrderingSystem {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        String[] food = {
+            "Pizza",
+            "Burger",
+            "Biryani",
+            "Sandwich",
+            "Paneer Roll"
+        };
+
+        int[] price = {150, 80, 180, 60, 100};
+
+        int[] quantity = new int[5];
+
+        int choice;
+
+        while (true) {
+
+            System.out.println("\n===== FOOD ORDERING SYSTEM =====");
+
+            System.out.println("1. Pizza      - Rs.150");
+            System.out.println("2. Burger     - Rs.80");
+            System.out.println("3. Biryani    - Rs.180");
+            System.out.println("4. Sandwich   - Rs.60");
+            System.out.println("5. Paneer Roll- Rs.100");
+
+            System.out.println("6. Generate Bill");
+            System.out.println("7. Exit");
+
+            System.out.print("Enter your choice: ");
+            choice = sc.nextInt();
+
+            if (choice >= 1 && choice <= 5) {
+
+                System.out.print("Enter quantity: ");
+                int q = sc.nextInt();
+
+                if (q > 0) {
+                    quantity[choice - 1] += q;
+                    System.out.println(food[choice - 1] +
+                            " added to cart successfully!");
+                } else {
+                    System.out.println("Enter a valid quantity!");
+                }
+
+            }
+
+            else if (choice == 6) {
+
+                int total = 0;
+
+                System.out.println("\n========== YOUR BILL ==========");
+
+                System.out.println("Food\t\tQty\tPrice\tAmount");
+
+                for (int i = 0; i < 5; i++) {
+
+                    if (quantity[i] > 0) {
+
+                        int amount = quantity[i] * price[i];
+
+                        System.out.println(food[i] + "\t"
+                                + quantity[i] + "\t"
+                                + price[i] + "\t"
+                                + amount);
+
+                        total = total + amount;
+                    }
+                }
+
+                if (total == 0) {
+                    System.out.println("Your cart is empty!");
+                } else {
+                    System.out.println("-------------------------------");
+                    System.out.println("Total Amount: Rs." + total);
+                    System.out.println("Order placed successfully!");
+                }
+
+                System.out.println("===============================");
+            }
+
+            else if (choice == 7) {
+
+                System.out.println("Thank you for visiting!");
+                break;
+
+            }
+
+            else {
+
+                System.out.println("Invalid choice! Try again.");
+
+            }
+        }
+
+        sc.close();
+    }
+}
